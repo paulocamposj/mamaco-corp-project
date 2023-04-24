@@ -1,0 +1,17 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	
+    <aura:attribute name="fields" type="String[]" default="['LastName','Company','Negotiation__c','Status']" />
+
+	<aura:attribute name="recordId" type="String"/>
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+    
+    <div class="slds-box slds-theme_default">
+        <h1 class="slds-text-heading_large">Criar uma novo Lead</h1><br/>
+        <lightning:recordForm                  
+             objectApiName="Lead"
+             fields="{!v.fields}"
+             columns="2"
+             onsuccess="{!c.handleSuccess}" />
+    </div>
+    
+</aura:component>
