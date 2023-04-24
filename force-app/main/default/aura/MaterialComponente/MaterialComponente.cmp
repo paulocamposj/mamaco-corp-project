@@ -1,0 +1,27 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="ControllerMaterial" >
+	
+    <aura:attribute name="mydata" type="Object"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    <aura:attribute name="fields" type="String[]" default="['Name','Data_da_Compra__c','Preco_Unitario__c','Preco_Total__c']" />
+    <aura:attribute name="recordId" type="String"/>
+    
+    <div class="slds-box slds-theme_default">
+        <div class="container-1">
+            <lightning:notificationsLibrary aura:id="notifLib"/>
+            <h1 class="slds-text-heading_large">Material</h1><br/>
+            <lightning:recordForm                  
+                 objectApiName="Material__c"
+                 fields="{!v.fields}"
+                 columns="2"
+                 onsuccess="{!c.handleSuccess}" />
+        </div>
+        <div class="container-1">
+            <h1 class="slds-text-heading_large">Lista Compras para o escritório</h1><br/><br/>
+            <lightning:datatable data="{! v.mydata }"
+            columns="{! v.mycolumns }"
+            keyField="Id"
+            hideCheckboxColumn="true"/>
+        </div>
+    </div>
+</aura:component>
